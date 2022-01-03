@@ -1,63 +1,480 @@
-<!doctype html><html lang=en><head><title>Git学习和配置 - Zone</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=renderer content="webkit"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="一路踩过的坑"><meta name=generator content="Hugo 0.79.1 with theme pure"><title>Git学习和配置 - Zone</title><link rel=stylesheet href=https://helberg1984.github.io/css/style.min.2e7aae9870d83190da642d2fdd825379e09f4075adc444467882d3bdc0d4827d.css><link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async><meta property="og:title" content="Git学习和配置"><meta property="og:description" content="一路踩过的坑"><meta property="og:type" content="article"><meta property="og:url" content="https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/"><meta property="article:published_time" content="2019-12-31T00:00:00+00:00"><meta property="article:modified_time" content="2019-12-31T00:00:00+00:00"><meta property="og:see_also" content="https://helberg1984.github.io/2022/01/github_page%E7%89%88%E9%9D%A2%E9%94%99%E4%B9%B1/"><meta property="og:see_also" content="https://helberg1984.github.io/2022/01/valine%E7%82%B9%E5%87%BB%E6%8F%90%E4%BA%A4%E6%97%A0%E5%8F%8D%E5%BA%94/"><meta itemprop=name content="Git学习和配置"><meta itemprop=description content="一路踩过的坑"><meta itemprop=datePublished content="2019-12-31T00:00:00+00:00"><meta itemprop=dateModified content="2019-12-31T00:00:00+00:00"><meta itemprop=wordCount content="1508"><meta itemprop=keywords content="Git,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Git学习和配置"><meta name=twitter:description content="一路踩过的坑"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=https://helberg1984.github.io/ target=_new><img class="img-circle img-rotate" src=https://helberg1984.github.io/avatar.png width=200 height=200></a><h2 id=name class="hidden-xs hidden-sm">Maxwell</h2><h3 id=title class="hidden-xs hidden-sm hidden-md">时空光影，不负流年</h3><small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Guangzhou, China</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=Search>
-<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder="Type something..." x-webkit-speech>
-<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
-<span class=sr-only>Toggle navigation</span>
-<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation><ul class="nav navbar-nav main-nav"><li class="menu-item menu-item-home"><a href=/><i class="icon icon-home-fill"></i><span class=menu-title>Home</span></a></li><li class="menu-item menu-item-archives"><a href=/posts/><i class="icon icon-archives-fill"></i><span class=menu-title>Archives</span></a></li><li class="menu-item menu-item-categories"><a href=/categories/><i class="icon icon-folder"></i><span class=menu-title>Categories</span></a></li><li class="menu-item menu-item-tags"><a href=/tags/><i class="icon icon-tags"></i><span class=menu-title>Tags</span></a></li><li class="menu-item menu-item-about"><a href=/about/><i class="icon icon-cup-fill"></i><span class=menu-title>About</span></a></li></ul></nav></div></header><aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><div class=widget><h3 class=widget-title>Board</h3><div class=widget-body><div id=board><div class=content><p>是这样的，既然前路遥遥，何必故作烦恼</p></div></div></div></div><div class=widget><h3 class=widget-title>Tag Cloud</h3><div id=tag-cloud-list class=widget-body><a href=https://helberg1984.github.io/tags/css/ class=tag-list-link rel=1>css<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/development/ class=tag-list-link rel=1>development<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/git/ class=tag-list-link rel=1>git<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/go/ class=tag-list-link rel=1>go<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/golang/ class=tag-list-link rel=1>golang<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/html/ class=tag-list-link rel=1>html<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/index/ class=tag-list-link rel=1>index<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/markdown/ class=tag-list-link rel=1>markdown<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/templates/ class=tag-list-link rel=1>templates<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/themes/ class=tag-list-link rel=2>themes<span class=tag-list-count>2</span></a>
-<a href=https://helberg1984.github.io/tags/%E5%90%89%E4%BB%96%E8%B0%B1/ class=tag-list-link rel=1>吉他谱<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/%E6%B7%B1%E5%9D%91/ class=tag-list-link rel=2>深坑<span class=tag-list-count>2</span></a>
-<a href=https://helberg1984.github.io/tags/%E8%AE%B2%E8%AF%9D/ class=tag-list-link rel=1>讲话<span class=tag-list-count>1</span></a></div><script>document.onreadystatechange=()=>{if(document.readyState==='complete'){tagCloud('#tag-cloud-list a',8,20);}};function tagCloud(where,min,max){let iMax=0;let iMin=0;$(where).each(function(){let weight=Number($(this).attr("rel"));if(iMax<weight)iMax=weight;if(iMin>weight||iMin==0)iMin=weight;});let step=(max-min)/(iMax-iMin);$(where).each(function(){let weight=$(this).attr("rel")-iMin;$(this).css({"font-size":min+(weight*step)+'px'});});};</script></div><div class=widget><h3 class=widget-title>Categories</h3><div class=widget-body><ul class=category-list><li class=category-list-item><a href=https://helberg1984.github.io/categories/development/ class=category-list-link>development</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/golang/ class=category-list-link>golang</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/syntax/ class=category-list-link>syntax</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/themes/ class=category-list-link>themes</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/%E6%94%BF%E6%B2%BB%E5%AD%A6%E4%B9%A0/ class=category-list-link>政治学习</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/ class=category-list-link>计算机</a><span class=category-list-count>3</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/%E9%9F%B3%E4%B9%90%E5%AD%A6%E4%B9%A0/ class=category-list-link>音乐学习</a><span class=category-list-count>1</span></li></ul></div></div><div class=widget><h3 class=widget-title>Tags</h3><div class=widget-body><ul class=tag-list><li class=tag-list-item><a href=https://helberg1984.github.io/tags/css/ class=tag-list-link>css</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/development/ class=tag-list-link>development</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/git/ class=tag-list-link>git</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/go/ class=tag-list-link>go</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/golang/ class=tag-list-link>golang</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/html/ class=tag-list-link>html</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/index/ class=tag-list-link>index</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/markdown/ class=tag-list-link>markdown</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/templates/ class=tag-list-link>templates</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/themes/ class=tag-list-link>themes</a><span class=tag-list-count>2</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/%E5%90%89%E4%BB%96%E8%B0%B1/ class=tag-list-link>吉他谱</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/%E6%B7%B1%E5%9D%91/ class=tag-list-link>深坑</a><span class=tag-list-count>2</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/%E8%AE%B2%E8%AF%9D/ class=tag-list-link>讲话</a><span class=tag-list-count>1</span></li></ul></div></div><div class=widget><h3 class=widget-title>Recent Posts</h3><div class=widget-body><ul class="recent-post-list list-unstyled no-thumbnail"><li><div class=item-inner><p class=item-title><a href=https://helberg1984.github.io/2022/01/github_page%E7%89%88%E9%9D%A2%E9%94%99%E4%B9%B1/ class=title>hugo部署到github_page时候CSS失效，版面错乱的解决办法</a></p><p class=item-date><time datetime="2022-01-02 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-02</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://helberg1984.github.io/2022/01/valine%E7%82%B9%E5%87%BB%E6%8F%90%E4%BA%A4%E6%97%A0%E5%8F%8D%E5%BA%94/ class=title>valine点击提交后无反应，learncloud后台无数据</a></p><p class=item-date><time datetime="2022-01-02 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-02</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://helberg1984.github.io/2022/01/%E4%B9%A0%E8%BF%91%E5%B9%B32022%E5%B9%B4%E6%96%B0%E5%B9%B4%E8%B4%BA%E8%AF%8D/ class=title>习近平2022年新年贺词</a></p><p class=item-date><time datetime="2022-01-02 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-02</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://helberg1984.github.io/2022/01/%E5%88%AB%E5%82%BB%E4%BA%86%E5%90%89%E4%BB%96%E8%B0%B1/ class=title>别傻了吉他谱</a></p><p class=item-date><time datetime="2022-01-02 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-02</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/ class=title>Git学习和配置</a></p><p class=item-date><time datetime="2019-12-31 00:00:00 +0000 UTC" itemprop=datePublished>2019-12-31</time></p></div></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>Catalogue</h4><nav id=toc class="js-toc toc"></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting><div class=article-header><h1 itemprop=name><a class=article-title href=/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/>Git学习和配置</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
-<a href=https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/ class=article-date><time datetime="2019-12-31 00:00:00 +0000 UTC" itemprop=datePublished>2019-12-31</time></a></span>
-<span class=article-category><i class="icon icon-folder"></i>&nbsp;
-<a class=article-category-link href=/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/>计算机</a></span>
-<span class=article-tag><i class="icon icon-tags"></i>&nbsp;
-<a class=article-tag-link href=/tags/git/>Git</a></span>
-<span class="article-read hidden-xs"><i class="icon icon-eye-fill" aria-hidden=true></i><span id=https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/ class=leancloud_visitors data-flag-title=Git学习和配置>0</span></span>
-<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/#comments class=article-comment-link>Comments</a></span>
-<span class="post-wordcount hidden-xs" itemprop=wordCount>Word Count: 1508 words</span>
-<span class="post-readcount hidden-xs" itemprop=timeRequired>Read Time: 4 minutes</span></div></div><div class="article-entry marked-body js-toc-content" itemprop=articleBody><p>git配置文件在~/.gitconfig</p><p><font color=green size=10>使用git config -l 可以查看现在的git环境详细配置</font></p><ol><li>配置文件存储位置
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        Git学习和配置 - Zone
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="一路踩过的坑" />
+    <meta name="generator" content="Hugo 0.91.0 with theme pure" />
+    <title>Git学习和配置 - Zone</title>
+    
+    
+    <link rel="stylesheet" href="https://helberg1984.github.io/css/style.min.7ac71d7f0cd5f34780b134f3c9e1a6d18797a29f0bd45832c4e80fc0c3d6b984.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="Git学习和配置" />
+<meta property="og:description" content="一路踩过的坑" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-12-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-31T00:00:00+00:00" />
+
+
+<meta itemprop="name" content="Git学习和配置">
+<meta itemprop="description" content="一路踩过的坑"><meta itemprop="datePublished" content="2019-12-31T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-12-31T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1508">
+<meta itemprop="keywords" content="Git," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Git学习和配置"/>
+<meta name="twitter:description" content="一路踩过的坑"/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://helberg1984.github.io/" target="_new">
+            <img class="img-circle img-rotate" src="https://helberg1984.github.io/avatar.png" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Maxwell</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">时空光影，不负流年</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Guangzhou, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content"><p>是这样的，既然前路遥遥，何必故作烦恼</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Tag Cloud</h3>
+    <div id="tag-cloud-list" class="widget-body">
+            
+            
+            <a href="https://helberg1984.github.io/tags/css/" class="tag-list-link" rel="1">css<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/development/" class="tag-list-link" rel="1">development<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/git/" class="tag-list-link" rel="1">git<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/go/" class="tag-list-link" rel="1">go<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/golang/" class="tag-list-link" rel="1">golang<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/html/" class="tag-list-link" rel="1">html<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/index/" class="tag-list-link" rel="1">index<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/markdown/" class="tag-list-link" rel="1">markdown<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/templates/" class="tag-list-link" rel="1">templates<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/themes/" class="tag-list-link" rel="2">themes<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/%E5%90%89%E4%BB%96%E8%B0%B1/" class="tag-list-link" rel="1">吉他谱<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/%E6%B7%B1%E5%9D%91/" class="tag-list-link" rel="2">深坑<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/%E8%AE%B2%E8%AF%9D/" class="tag-list-link" rel="1">讲话<span
+               class="tag-list-count">1</span></a>
+            
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    tagCloud('#tag-cloud-list a',  8 ,  20 );
+  }
+};
+
+function tagCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Categories</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/development/" class="category-list-link">development</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/syntax/" class="category-list-link">syntax</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/themes/" class="category-list-link">themes</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/%E6%94%BF%E6%B2%BB%E5%AD%A6%E4%B9%A0/" class="category-list-link">政治学习</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-list-link">计算机</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/%E9%9F%B3%E4%B9%90%E5%AD%A6%E4%B9%A0/" class="category-list-link">音乐学习</a><span class="category-list-count">1</span></li>
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/css/" class="tag-list-link">css</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/development/" class="tag-list-link">development</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/git/" class="tag-list-link">git</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/go/" class="tag-list-link">go</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/golang/" class="tag-list-link">golang</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/html/" class="tag-list-link">html</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/index/" class="tag-list-link">index</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/markdown/" class="tag-list-link">markdown</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/templates/" class="tag-list-link">templates</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/themes/" class="tag-list-link">themes</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/%E5%90%89%E4%BB%96%E8%B0%B1/" class="tag-list-link">吉他谱</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/%E6%B7%B1%E5%9D%91/" class="tag-list-link">深坑</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/%E8%AE%B2%E8%AF%9D/" class="tag-list-link">讲话</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://helberg1984.github.io/2022/01/github_page%E7%89%88%E9%9D%A2%E9%94%99%E4%B9%B1/" class="title">hugo部署到github_page时候CSS失效，版面错乱的解决办法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-01-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-01-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://helberg1984.github.io/2022/01/valine%E7%82%B9%E5%87%BB%E6%8F%90%E4%BA%A4%E6%97%A0%E5%8F%8D%E5%BA%94/" class="title">valine点击提交后无反应，learncloud后台无数据</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-01-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-01-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://helberg1984.github.io/2022/01/%E4%B9%A0%E8%BF%91%E5%B9%B32022%E5%B9%B4%E6%96%B0%E5%B9%B4%E8%B4%BA%E8%AF%8D/" class="title">习近平2022年新年贺词</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-01-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-01-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://helberg1984.github.io/2022/01/%E5%88%AB%E5%82%BB%E4%BA%86%E5%90%89%E4%BB%96%E8%B0%B1/" class="title">别傻了吉他谱</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-01-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-01-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/" class="title">Git学习和配置</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-12-31 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-12-31</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/"
+    >Git学习和配置</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2019-12-31 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-12-31</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/"> 计算机 </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/git/"> Git </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/" class="leancloud_visitors"  data-flag-title="Git学习和配置">0</span>
+    </span>
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1508 words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Time: 4 minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>git配置文件在~/.gitconfig</p>
+<p><font color="green" size="10">使用git config -l 可以查看现在的git环境详细配置</font></p>
+<ol>
+<li>配置文件存储位置
 /etc/gitconfig 文件：系统中对所有用户都普遍适用的配置。若使用 git config 时用 &ndash;system 选项，读写的就是这个文件；
 ~/.gitconfig 文件：用户目录下的配置文件只适用于该用户。若使用 git config 时用 &ndash;global 选项，读写的就是这个文件；
 当前项目的 Git 目录中的配置文件（也就是工作目录中的 .git/config 文件）：这里的配置仅仅针对当前项目有效。每一个级别的配置都会覆盖上层的相同配置，所以 .git/config 里的配置会覆盖 /etc/gitconfig 中的同名变量；
-在 Windows 系统上，Git 会找寻用户主目录下的 .gitconfig 文件。主目录即 $HOME 变量指定的目录，一般都是 C:\Documents and Settings$USER。此外，Git 还会尝试找寻 /etc/gitconfig 文件，只不过看当初 Git 装在什么目录，就以此作为根目录来定位。</li></ol><p><font color=green size=10>使用git config -l 可以查看现在的git环境详细配置</font></p><ol><li>配置用户信息
-当你安装Git后首先要做的事情是设置你的用户名称和邮箱地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：</li></ol><pre><code>Shell
+在 Windows 系统上，Git 会找寻用户主目录下的 .gitconfig 文件。主目录即 $HOME 变量指定的目录，一般都是 C:\Documents and Settings$USER。此外，Git 还会尝试找寻 /etc/gitconfig 文件，只不过看当初 Git 装在什么目录，就以此作为根目录来定位。</li>
+</ol>
+<p><font color="green" size="10">使用git config -l 可以查看现在的git环境详细配置</font></p>
+<ol>
+<li>配置用户信息
+当你安装Git后首先要做的事情是设置你的用户名称和邮箱地址。这两条配置很重要，每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录：</li>
+</ol>
+<pre><code>Shell
 $ git config --global user.name &quot;John Doe&quot;
 $ git config --global user.email johndoe@example.com
 1
 2
 $ git config --global user.name &quot;John Doe&quot;
 $ git config --global user.email johndoe@example.com
-</code></pre><p>你只需要做一次这个设置，如果你传递了 &ndash;global 选项，因为Git将总是会使用该信息来处理你在系统中所做的一切操作。如果你希望在一个特定的项目中使用不同的名称或e-mail地址，你可以在该项目中运行该命令而不要&ndash;global选项。</p><ol start=3><li>配置编辑器
-Git 需要你输入一些额外消息的时候，默认会使用操作系统指定的默认编辑器，一般可能会是 Vi 或者 Vim。如果你有其他偏好，比如 Emacs 的话，可以重新设置：</li></ol><p>Shell
+</code></pre>
+<p>你只需要做一次这个设置，如果你传递了 &ndash;global 选项，因为Git将总是会使用该信息来处理你在系统中所做的一切操作。如果你希望在一个特定的项目中使用不同的名称或e-mail地址，你可以在该项目中运行该命令而不要&ndash;global选项。</p>
+<ol start="3">
+<li>配置编辑器
+Git 需要你输入一些额外消息的时候，默认会使用操作系统指定的默认编辑器，一般可能会是 Vi 或者 Vim。如果你有其他偏好，比如 Emacs 的话，可以重新设置：</li>
+</ol>
+<p>Shell
 $ git config &ndash;global core.editor emacs
 1
 $ git config &ndash;global core.editor emacs
 4. 配置密码
-如果我们在安装 Git 的时候设置了密码，那么当我们做 Clone 和 Push 等操作的时候就会要求我们输入密码。显然，如果每次都这么做就太麻烦了，我们可以在配置文件中设置密码或时效已解决这样的问题：</p><p>$ git config &ndash;global credential.helper password # 存储密码
-$ git config &ndash;global credential.helper &lsquo;cache &ndash;timeout 3600&rsquo; # 每次输入密码将保存3600秒，可设置为其它值
+如果我们在安装 Git 的时候设置了密码，那么当我们做 Clone 和 Push 等操作的时候就会要求我们输入密码。显然，如果每次都这么做就太麻烦了，我们可以在配置文件中设置密码或时效已解决这样的问题：</p>
+<p>$ git config &ndash;global credential.helper password    # 存储密码
+$ git config &ndash;global credential.helper &lsquo;cache &ndash;timeout 3600&rsquo;  # 每次输入密码将保存3600秒，可设置为其它值
 1
 2
-$ git config &ndash;global credential.helper password # 存储密码
-$ git config &ndash;global credential.helper &lsquo;cache &ndash;timeout 3600&rsquo; # 每次输入密码将保存3600秒，可设置为其它值
+$ git config &ndash;global credential.helper password    # 存储密码
+$ git config &ndash;global credential.helper &lsquo;cache &ndash;timeout 3600&rsquo;  # 每次输入密码将保存3600秒，可设置为其它值
 5. 配置比较工具
-还有一个比较常用的是，在解决合并冲突时使用哪种差异分析工具：</p><p>Shell
+还有一个比较常用的是，在解决合并冲突时使用哪种差异分析工具：</p>
+<p>Shell
 $ git config &ndash;global merge.tool vimdiff # 设置vimdiff比较工具
 1
 $ git config &ndash;global merge.tool vimdiff # 设置vimdiff比较工具
-Git 可以理解 kdiff3，tkdiff，meld，xxdiff，emerge，vimdiff，gvimdiff，ecmerge，和 opendiff 等合并工具的输出信息。当然，你也可以指定使用自己开发的工具。</p><ol start=6><li>查看配置
-如果你想要查看配置，可以使用git config指令。config 配置有system级别 global（用户级别） 和local（当前仓库）三个 设置先从system->global->local 底层配置会覆盖顶层配置 分别使用&ndash;system/global/local 可以定位到配置文件。</li></ol><p>Shell
-$ git config &ndash;system &ndash;list # 查看系统配置
-$ git config &ndash;global &ndash;list # 查看当前用户配置
-$ git config &ndash;local &ndash;list # 查看当前仓库配置
-$ git config &ndash;list # 查看全部配置</p><h1 id=我们执行最后一条指令>我们执行最后一条指令</h1><p>$ git config &ndash;list
+Git 可以理解 kdiff3，tkdiff，meld，xxdiff，emerge，vimdiff，gvimdiff，ecmerge，和 opendiff 等合并工具的输出信息。当然，你也可以指定使用自己开发的工具。</p>
+<ol start="6">
+<li>查看配置
+如果你想要查看配置，可以使用git config指令。config 配置有system级别 global（用户级别） 和local（当前仓库）三个 设置先从system-&gt;global-&gt;local  底层配置会覆盖顶层配置 分别使用&ndash;system/global/local 可以定位到配置文件。</li>
+</ol>
+<p>Shell
+$ git config &ndash;system &ndash;list    # 查看系统配置
+$ git config &ndash;global &ndash;list    # 查看当前用户配置
+$ git config &ndash;local &ndash;list     # 查看当前仓库配置
+$ git config &ndash;list             # 查看全部配置</p>
+<h1 id="我们执行最后一条指令">我们执行最后一条指令</h1>
+<p>$ git config &ndash;list
 core.symlinks=false
 core.autocrlf=true
 core.fscache=true
@@ -78,10 +495,12 @@ color.interactive=true
 11
 12
 13
-$ git config &ndash;system &ndash;list # 查看系统配置
-$ git config &ndash;global &ndash;list # 查看当前用户配置
-$ git config &ndash;local &ndash;list # 查看当前仓库配置
-$ git config &ndash;list # 查看全部配置</p><h1 id=我们执行最后一条指令-1>我们执行最后一条指令</h1><p>$ git config &ndash;list
+$ git config &ndash;system &ndash;list    # 查看系统配置
+$ git config &ndash;global &ndash;list    # 查看当前用户配置
+$ git config &ndash;local &ndash;list     # 查看当前仓库配置
+$ git config &ndash;list             # 查看全部配置</p>
+<h1 id="我们执行最后一条指令-1">我们执行最后一条指令</h1>
+<p>$ git config &ndash;list
 core.symlinks=false
 core.autocrlf=true
 core.fscache=true
@@ -89,7 +508,9 @@ color.diff=auto
 color.status=auto
 color.branch=auto
 color.interactive=true
-有时候会看到重复的变量名，那就说明它们来自不同的配置文件（比如 /etc/gitconfig 和 ~/.gitconfig），不过最终 Git 实际采用的是最后一个。</p><p>也可以直接查阅某个环境变量的设定，只要把特定的名字跟在后面（git config {key}）即可：</p><p>Shell
+有时候会看到重复的变量名，那就说明它们来自不同的配置文件（比如 /etc/gitconfig 和 ~/.gitconfig），不过最终 Git 实际采用的是最后一个。</p>
+<p>也可以直接查阅某个环境变量的设定，只要把特定的名字跟在后面（git config {key}）即可：</p>
+<p>Shell
 $ git config user.name
 epins
 1
@@ -97,21 +518,182 @@ epins
 $ git config user.name
 epins
 7. 获取帮助
-可以使用以下三种方法获得任何 Git 命令的手册页(manpage)帮助信息:</p><p>Shell
-$ git help <verb><br>$ git <verb>&ndash;help<br>$ man git-<verb>
+可以使用以下三种方法获得任何 Git 命令的手册页(manpage)帮助信息:</p>
+<p>Shell
+$ git help <verb><br>
+$ git <verb> &ndash;help<br>
+$ man git-<verb>
 1
 2
 3
-$ git help <verb><br>$ git <verb>&ndash;help<br>$ man git-<verb></p></div><div class=article-footer><blockquote class=mt-2x><ul class="post-copyright list-unstyled"><li class="post-copyright-link hidden-xs"><strong>Permalink:</strong>
-<a href=https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/ title=Git学习和配置 target=_blank rel=external>https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/</a></li><li class=post-copyright-license><strong>License:</strong>
-<a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>爱与和平</a></li></ul></blockquote><div class="panel panel-default panel-badger"><div class=panel-body><figure class=media><div class=media-left><a href=https://helberg1984.github.io/ target=_blank class="img-burn thumb-sm visible-lg"><img src=https://helberg1984.github.io/avatar.png class="img-rounded w-full" alt></a></div><div class=media-body><h3 class=media-heading><a href=https://helberg1984.github.io/ target=_blank><span class=text-dark>Maxwell</span><small class=ml-1x>时空光影，不负流年</small></a></h3><div>快乐如影随形，有你就好。</div></div></figure></div></div></div></article><section id=comments><div id=vcomments></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class=bar-inner><ul class="pager pull-left"><li class=prev><a href=https://helberg1984.github.io/2019/03/markdown-syntax/ title="Markdown Syntax Guide"><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;Older</span></a></li><li class=next><a href=https://helberg1984.github.io/2022/01/%E5%88%AB%E5%82%BB%E4%BA%86%E5%90%89%E4%BB%96%E8%B0%B1/ title=别傻了吉他谱><span>Newer&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class=toggle-toc><a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=Catalogue role=button><span>[&nbsp;</span><span>Catalogue</span>
-<i class="text-collapsed icon icon-anchor"></i><i class="text-in icon icon-close"></i><span>]</span></a></li></ul><div class=bar-right><div class=share-component data-sites=weibo,qq,wechat,facebook,twitter data-mobile-sites=weibo,qq,qzone></div></div></div></nav></main><footer class=footer itemscope itemtype=http://schema.org/WPFooter><ul class=social-links><li><a href=https://helberg1984.github.io/index.xml target=_blank title=rss data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li></ul><div class=copyright>&copy;2020 -
-2022<div class=publishby>Theme by <a href=https://github.com/helberg1984 target=_blank>Maxwell </a>base on<a href=https://github.com/xiaoheiAh/hugo-theme-pure target=_blank> pure</a>.</div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/x-mathjax-config>
+$ git help <verb><br>
+$ git <verb> &ndash;help<br>
+$ man git-<verb></p>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>Permalink: </strong>
+      <a href="https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/" title="Git学习和配置" target="_blank" rel="external">https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License: </strong>
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">爱与和平</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://helberg1984.github.io/" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://helberg1984.github.io/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://helberg1984.github.io/" target="_blank"><span class="text-dark">Maxwell</span><small class="ml-1x">时空光影，不负流年</small></a></h3>
+        <div>快乐如影随形，有你就好。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+<section id="comments">
+    <div id="vcomments"></div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://helberg1984.github.io/2019/03/markdown-syntax/" title="Markdown Syntax Guide"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://helberg1984.github.io/2022/01/%E5%88%AB%E5%82%BB%E4%BA%86%E5%90%89%E4%BB%96%E8%B0%B1/"
+                    title="别傻了吉他谱"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://helberg1984.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2020  -
+    2022
+    <div class="publishby">
+        Theme by <a href="https://github.com/helberg1984" target="_blank"> Maxwell </a>base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
+    </div>
+    
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
             showMathMenu: false, //disables context menu
             tex2jax: {
             inlineMath: [ ['$','$'], ['\\(','\\)'] ]
            }
     });
-</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script><script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js defer></script><script>hljs.configure({tabReplace:'    ',classPrefix:''})
-hljs.initHighlightingOnLoad();</script><script src=https://helberg1984.github.io/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js></script><script src=https://helberg1984.github.io/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:'Posts',PAGES:'Pages',CATEGORIES:'Categories',TAGS:'Tags',UNTITLED:'(Untitled)',},ROOT_URL:'https:\/\/helberg1984.github.io\/',CONTENT_URL:'https:\/\/helberg1984.github.io\/\/searchindex.json ',};window.INSIGHT_CONFIG=INSIGHT_CONFIG;})(window);</script><script type=text/javascript src=https://helberg1984.github.io/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js defer></script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script><script>tocbot.init({tocSelector:'.js-toc',contentSelector:'.js-toc-content',headingSelector:'h1, h2, h3',hasInnerContainers:true,});</script><script src=//code.bdstatic.com/npm/leancloud-storage@4.12.0/dist/av-min.js></script><script src=https://cdn.jsdelivr.net/npm/valine></script><script type=text/javascript>var GUEST=['nick','mail','link'];var meta='nick,mail';meta=meta.split(',').filter(function(item){return GUEST.indexOf(item)>-1;});new Valine({el:'#vcomments',verify:false,notify:false,appId:'AAKKBXtVUrSVMDEJvisWnnaE-MdYXbMMI',appKey:'O5UWsMA0OAcEQYjglCwB316z',placeholder:'你想说点什么？',avatar:'mm',meta:meta,pageSize:'10'||10,visitor:true,serverURLs:'https:\/\/aakkbxtv.api.lncldglobal.com'});</script></body></html>
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://helberg1984.github.io/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js"></script>
+<script src="https://helberg1984.github.io/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/helberg1984.github.io\/',
+            CONTENT_URL: 'https:\/\/helberg1984.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://helberg1984.github.io/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script src="//code.bdstatic.com/npm/leancloud-storage@4.12.0/dist/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine"></script>
+<script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail';
+    meta = meta.split(',').filter(function (item) {
+        return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+        el: '#vcomments',
+        verify: false ,
+        notify: false ,
+        appId: 'AAKKBXtVUrSVMDEJvisWnnaE-MdYXbMMI',
+        appKey: 'O5UWsMA0OAcEQYjglCwB316z',
+        placeholder: '你想说点什么？',
+        avatar: 'mm',
+        meta: meta,
+        pageSize: '10' || 10,
+        visitor: true ,
+        serverURLs: 'https:\/\/aakkbxtv.api.lncldglobal.com'
+});
+</script>
+  </body>
+</html>
