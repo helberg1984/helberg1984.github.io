@@ -1,135 +1,617 @@
-<!doctype html><html lang=en><head><title>(Hu)go Template Primer - Zone</title><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui"><meta name=renderer content="webkit"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="black"><meta name=format-detection content="telephone=no,email=no,adress=no"><meta name=theme-color content="#000000"><meta http-equiv=window-target content="_top"><meta name=description content="Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
-This document is a brief primer on using go templates."><meta name=generator content="Hugo 0.79.1 with theme pure"><title>(Hu)go Template Primer - Zone</title><link rel=stylesheet href=https://helberg1984.github.io/css/style.min.2e7aae9870d83190da642d2fdd825379e09f4075adc444467882d3bdc0d4827d.css><link rel=stylesheet href=https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css async><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css async><meta property="og:title" content="(Hu)go Template Primer"><meta property="og:description" content="Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
-This document is a brief primer on using go templates."><meta property="og:type" content="article"><meta property="og:url" content="https://helberg1984.github.io/2014/04/goisforlovers/"><meta property="article:published_time" content="2014-04-02T00:00:00+00:00"><meta property="article:modified_time" content="2014-04-02T00:00:00+00:00"><meta itemprop=name content="(Hu)go Template Primer"><meta itemprop=description content="Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
-This document is a brief primer on using go templates."><meta itemprop=datePublished content="2014-04-02T00:00:00+00:00"><meta itemprop=dateModified content="2014-04-02T00:00:00+00:00"><meta itemprop=wordCount content="1488"><meta itemprop=keywords content="go,golang,templates,themes,development,"><meta name=twitter:card content="summary"><meta name=twitter:title content="(Hu)go Template Primer"><meta name=twitter:description content="Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
-This document is a brief primer on using go templates."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body class="main-center theme-black" itemscope itemtype=http://schema.org/WebPage><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=slimContent><div class=navbar-header><div class="profile-block text-center"><a id=avatar href=https://helberg1984.github.io/ target=_new><img class="img-circle img-rotate" src=https://helberg1984.github.io/avatar.png width=200 height=200></a><h2 id=name class="hidden-xs hidden-sm">Maxwell</h2><h3 id=title class="hidden-xs hidden-sm hidden-md">时空光影，不负流年</h3><small id=location class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Guangzhou, China</small></div><div class=search id=search-form-wrap><form class="search-form sidebar-form"><div class=input-group><input type=text class="search-form-input form-control" placeholder=Search>
-<span class=input-group-btn><button type=submit class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button></span></div><div class=ins-search><div class=ins-search-mask></div><div class=ins-search-container><div class=ins-input-wrapper><input type=text class=ins-search-input placeholder="Type something..." x-webkit-speech>
-<button type=button class="close ins-close ins-selectable" data-dismiss=modal aria-label=Close><span aria-hidden=true>×</span></button></div><div class=ins-section-wrapper><div class=ins-section-container></div></div></div></div></form></div><button class="navbar-toggle collapsed" type=button data-toggle=collapse data-target=#main-navbar aria-controls=main-navbar aria-expanded=false>
-<span class=sr-only>Toggle navigation</span>
-<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><nav id=main-navbar class="collapse navbar-collapse" itemscope itemtype=http://schema.org/SiteNavigationElement role=navigation><ul class="nav navbar-nav main-nav"><li class="menu-item menu-item-home"><a href=/><i class="icon icon-home-fill"></i><span class=menu-title>Home</span></a></li><li class="menu-item menu-item-archives"><a href=/posts/><i class="icon icon-archives-fill"></i><span class=menu-title>Archives</span></a></li><li class="menu-item menu-item-categories"><a href=/categories/><i class="icon icon-folder"></i><span class=menu-title>Categories</span></a></li><li class="menu-item menu-item-tags"><a href=/tags/><i class="icon icon-tags"></i><span class=menu-title>Tags</span></a></li><li class="menu-item menu-item-about"><a href=/about/><i class="icon icon-cup-fill"></i><span class=menu-title>About</span></a></li></ul></nav></div></header><aside class=sidebar itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><div class=widget><h3 class=widget-title>Board</h3><div class=widget-body><div id=board><div class=content><p>是这样的，既然前路遥遥，何必故作烦恼</p></div></div></div></div><div class=widget><h3 class=widget-title>Tag Cloud</h3><div id=tag-cloud-list class=widget-body><a href=https://helberg1984.github.io/tags/css/ class=tag-list-link rel=2>css<span class=tag-list-count>2</span></a>
-<a href=https://helberg1984.github.io/tags/development/ class=tag-list-link rel=1>development<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/git/ class=tag-list-link rel=1>git<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/go/ class=tag-list-link rel=1>go<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/golang/ class=tag-list-link rel=1>golang<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/html/ class=tag-list-link rel=2>html<span class=tag-list-count>2</span></a>
-<a href=https://helberg1984.github.io/tags/index/ class=tag-list-link rel=1>index<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/javascript/ class=tag-list-link rel=1>javascript<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/markdown/ class=tag-list-link rel=2>markdown<span class=tag-list-count>2</span></a>
-<a href=https://helberg1984.github.io/tags/templates/ class=tag-list-link rel=1>templates<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/themes/ class=tag-list-link rel=2>themes<span class=tag-list-count>2</span></a>
-<a href=https://helberg1984.github.io/tags/%E5%90%89%E4%BB%96%E8%B0%B1/ class=tag-list-link rel=1>吉他谱<span class=tag-list-count>1</span></a>
-<a href=https://helberg1984.github.io/tags/%E6%B7%B1%E5%9D%91/ class=tag-list-link rel=2>深坑<span class=tag-list-count>2</span></a>
-<a href=https://helberg1984.github.io/tags/%E8%AE%B2%E8%AF%9D/ class=tag-list-link rel=1>讲话<span class=tag-list-count>1</span></a></div><script>document.onreadystatechange=()=>{if(document.readyState==='complete'){tagCloud('#tag-cloud-list a',8,20);}};function tagCloud(where,min,max){let iMax=0;let iMin=0;$(where).each(function(){let weight=Number($(this).attr("rel"));if(iMax<weight)iMax=weight;if(iMin>weight||iMin==0)iMin=weight;});let step=(max-min)/(iMax-iMin);$(where).each(function(){let weight=$(this).attr("rel")-iMin;$(this).css({"font-size":min+(weight*step)+'px'});});};</script></div><div class=widget><h3 class=widget-title>Categories</h3><div class=widget-body><ul class=category-list><li class=category-list-item><a href=https://helberg1984.github.io/categories/development/ class=category-list-link>development</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/golang/ class=category-list-link>golang</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/syntax/ class=category-list-link>syntax</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/themes/ class=category-list-link>themes</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/web/ class=category-list-link>web</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/%E6%94%BF%E6%B2%BB%E5%AD%A6%E4%B9%A0/ class=category-list-link>政治学习</a><span class=category-list-count>1</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/ class=category-list-link>计算机</a><span class=category-list-count>4</span></li><li class=category-list-item><a href=https://helberg1984.github.io/categories/%E9%9F%B3%E4%B9%90%E5%AD%A6%E4%B9%A0/ class=category-list-link>音乐学习</a><span class=category-list-count>1</span></li></ul></div></div><div class=widget><h3 class=widget-title>Tags</h3><div class=widget-body><ul class=tag-list><li class=tag-list-item><a href=https://helberg1984.github.io/tags/css/ class=tag-list-link>css</a><span class=tag-list-count>2</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/development/ class=tag-list-link>development</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/git/ class=tag-list-link>git</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/go/ class=tag-list-link>go</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/golang/ class=tag-list-link>golang</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/html/ class=tag-list-link>html</a><span class=tag-list-count>2</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/index/ class=tag-list-link>index</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/javascript/ class=tag-list-link>javascript</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/markdown/ class=tag-list-link>markdown</a><span class=tag-list-count>2</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/templates/ class=tag-list-link>templates</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/themes/ class=tag-list-link>themes</a><span class=tag-list-count>2</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/%E5%90%89%E4%BB%96%E8%B0%B1/ class=tag-list-link>吉他谱</a><span class=tag-list-count>1</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/%E6%B7%B1%E5%9D%91/ class=tag-list-link>深坑</a><span class=tag-list-count>2</span></li><li class=tag-list-item><a href=https://helberg1984.github.io/tags/%E8%AE%B2%E8%AF%9D/ class=tag-list-link>讲话</a><span class=tag-list-count>1</span></li></ul></div></div><div class=widget><h3 class=widget-title>Recent Posts</h3><div class=widget-body><ul class="recent-post-list list-unstyled no-thumbnail"><li><div class=item-inner><p class=item-title><a href=https://helberg1984.github.io/2022/01/web%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class=title>WEB开发学习记录</a></p><p class=item-date><time datetime="2022-01-03 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-03</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://helberg1984.github.io/2022/01/github_page%E7%89%88%E9%9D%A2%E9%94%99%E4%B9%B1/ class=title>hugo部署到github_page时候CSS失效，版面错乱的解决办法</a></p><p class=item-date><time datetime="2022-01-02 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-02</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://helberg1984.github.io/2022/01/valine%E7%82%B9%E5%87%BB%E6%8F%90%E4%BA%A4%E6%97%A0%E5%8F%8D%E5%BA%94/ class=title>valine点击提交后无反应，learncloud后台无数据</a></p><p class=item-date><time datetime="2022-01-02 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-02</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://helberg1984.github.io/2022/01/%E4%B9%A0%E8%BF%91%E5%B9%B32022%E5%B9%B4%E6%96%B0%E5%B9%B4%E8%B4%BA%E8%AF%8D/ class=title>习近平2022年新年贺词</a></p><p class=item-date><time datetime="2022-01-02 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-02</time></p></div></li><li><div class=item-inner><p class=item-title><a href=https://helberg1984.github.io/2022/01/%E5%88%AB%E5%82%BB%E4%BA%86%E5%90%89%E4%BB%96%E8%B0%B1/ class=title>别傻了吉他谱</a></p><p class=item-date><time datetime="2022-01-02 00:00:00 +0000 UTC" itemprop=datePublished>2022-01-02</time></p></div></li></ul></div></div></div></aside><aside class="sidebar sidebar-toc collapse" id=collapseToc itemscope itemtype=http://schema.org/WPSideBar><div class=slimContent><h4 class=toc-title>Catalogue</h4><nav id=toc class="js-toc toc"></nav></div></aside><main class=main role=main><div class=content><article id=- class="article article-type-" itemscope itemtype=http://schema.org/BlogPosting><div class=article-header><h1 itemprop=name><a class=article-title href=/2014/04/goisforlovers/>(Hu)go Template Primer</a></h1><div class=article-meta><span class=article-date><i class="icon icon-calendar-check"></i>&nbsp;
-<a href=https://helberg1984.github.io/2014/04/goisforlovers/ class=article-date><time datetime="2014-04-02 00:00:00 +0000 UTC" itemprop=datePublished>2014-04-02</time></a></span>
-<span class=article-category><i class="icon icon-folder"></i>&nbsp;
-<a class=article-category-link href=/categories/development/>Development</a>
-<a class=article-category-link href=/categories/golang/>golang</a></span>
-<span class=article-tag><i class="icon icon-tags"></i>&nbsp;
-<a class=article-tag-link href=/tags/go/>go</a>
-<a class=article-tag-link href=/tags/golang/>golang</a>
-<a class=article-tag-link href=/tags/templates/>templates</a>
-<a class=article-tag-link href=/tags/themes/>themes</a>
-<a class=article-tag-link href=/tags/development/>development</a></span>
-<span class="article-read hidden-xs"><i class="icon icon-eye-fill" aria-hidden=true></i><span id=https://helberg1984.github.io/2014/04/goisforlovers/ class=leancloud_visitors data-flag-title="(Hu)go Template Primer">0</span></span>
-<span class=post-comment><i class="icon icon-comment"></i>&nbsp;<a href=/2014/04/goisforlovers/#comments class=article-comment-link>Comments</a></span>
-<span class="post-wordcount hidden-xs" itemprop=wordCount>Word Count: 1488 words</span>
-<span class="post-readcount hidden-xs" itemprop=timeRequired>Read Time: 7 minutes</span></div></div><div class="article-entry marked-body js-toc-content" itemprop=articleBody><p>Hugo uses the excellent <a href=http://golang.org/>go</a> <a href=http://golang.org/pkg/html/template/>html/template</a> library for
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+        (Hu)go Template Primer - Zone
+      </title>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    
+    <meta name="theme-color" content="#000000" />
+    
+    <meta http-equiv="window-target" content="_top" />
+    
+    
+    <meta name="description" content="Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
+This document is a brief primer on using go templates." />
+    <meta name="generator" content="Hugo 0.91.0 with theme pure" />
+    <title>(Hu)go Template Primer - Zone</title>
+    
+    
+    <link rel="stylesheet" href="https://helberg1984.github.io/css/style.min.7ac71d7f0cd5f34780b134f3c9e1a6d18797a29f0bd45832c4e80fc0c3d6b984.css">
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css" async>
+    <meta property="og:title" content="(Hu)go Template Primer" />
+<meta property="og:description" content="Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
+This document is a brief primer on using go templates." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://helberg1984.github.io/2014/04/goisforlovers/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2014-04-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2014-04-02T00:00:00+00:00" />
+
+<meta itemprop="name" content="(Hu)go Template Primer">
+<meta itemprop="description" content="Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
+This document is a brief primer on using go templates."><meta itemprop="datePublished" content="2014-04-02T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2014-04-02T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1488">
+<meta itemprop="keywords" content="go,golang,templates,themes,development," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="(Hu)go Template Primer"/>
+<meta name="twitter:description" content="Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
+This document is a brief primer on using go templates."/>
+
+    <!--[if lte IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+      <![endif]-->
+
+    <!--[if lt IE 9]>
+        <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+      <![endif]-->
+  </head>
+
+  
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://helberg1984.github.io/" target="_new">
+            <img class="img-circle img-rotate" src="https://helberg1984.github.io/avatar.png" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Maxwell</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">时空光影，不负流年</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Guangzhou, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts/">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories/">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags/">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about/">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content"><p>是这样的，既然前路遥遥，何必故作烦恼</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Tag Cloud</h3>
+    <div id="tag-cloud-list" class="widget-body">
+            
+            
+            <a href="https://helberg1984.github.io/tags/css/" class="tag-list-link" rel="1">css<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/development/" class="tag-list-link" rel="1">development<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/git/" class="tag-list-link" rel="1">git<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/go/" class="tag-list-link" rel="1">go<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/golang/" class="tag-list-link" rel="1">golang<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/html/" class="tag-list-link" rel="1">html<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/index/" class="tag-list-link" rel="1">index<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/markdown/" class="tag-list-link" rel="1">markdown<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/templates/" class="tag-list-link" rel="1">templates<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/themes/" class="tag-list-link" rel="2">themes<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/%E5%90%89%E4%BB%96%E8%B0%B1/" class="tag-list-link" rel="1">吉他谱<span
+               class="tag-list-count">1</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/%E6%B7%B1%E5%9D%91/" class="tag-list-link" rel="2">深坑<span
+               class="tag-list-count">2</span></a>
+            
+            
+            <a href="https://helberg1984.github.io/tags/%E8%AE%B2%E8%AF%9D/" class="tag-list-link" rel="1">讲话<span
+               class="tag-list-count">1</span></a>
+            
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    tagCloud('#tag-cloud-list a',  8 ,  20 );
+  }
+};
+
+function tagCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Categories</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/development/" class="category-list-link">development</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/golang/" class="category-list-link">golang</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/syntax/" class="category-list-link">syntax</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/themes/" class="category-list-link">themes</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/%E6%94%BF%E6%B2%BB%E5%AD%A6%E4%B9%A0/" class="category-list-link">政治学习</a><span class="category-list-count">1</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="category-list-link">计算机</a><span class="category-list-count">3</span></li>
+            <li class="category-list-item"><a href="https://helberg1984.github.io/categories/%E9%9F%B3%E4%B9%90%E5%AD%A6%E4%B9%A0/" class="category-list-link">音乐学习</a><span class="category-list-count">1</span></li>
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/css/" class="tag-list-link">css</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/development/" class="tag-list-link">development</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/git/" class="tag-list-link">git</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/go/" class="tag-list-link">go</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/golang/" class="tag-list-link">golang</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/html/" class="tag-list-link">html</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/index/" class="tag-list-link">index</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/markdown/" class="tag-list-link">markdown</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/templates/" class="tag-list-link">templates</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/themes/" class="tag-list-link">themes</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/%E5%90%89%E4%BB%96%E8%B0%B1/" class="tag-list-link">吉他谱</a><span
+                    class="tag-list-count">1</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/%E6%B7%B1%E5%9D%91/" class="tag-list-link">深坑</a><span
+                    class="tag-list-count">2</span></li>
+            
+            
+            <li class="tag-list-item"><a href="https://helberg1984.github.io/tags/%E8%AE%B2%E8%AF%9D/" class="tag-list-link">讲话</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://helberg1984.github.io/2022/01/github_page%E7%89%88%E9%9D%A2%E9%94%99%E4%B9%B1/" class="title">hugo部署到github_page时候CSS失效，版面错乱的解决办法</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-01-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-01-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://helberg1984.github.io/2022/01/valine%E7%82%B9%E5%87%BB%E6%8F%90%E4%BA%A4%E6%97%A0%E5%8F%8D%E5%BA%94/" class="title">valine点击提交后无反应，learncloud后台无数据</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-01-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-01-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://helberg1984.github.io/2022/01/%E4%B9%A0%E8%BF%91%E5%B9%B32022%E5%B9%B4%E6%96%B0%E5%B9%B4%E8%B4%BA%E8%AF%8D/" class="title">习近平2022年新年贺词</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-01-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-01-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://helberg1984.github.io/2022/01/%E5%88%AB%E5%82%BB%E4%BA%86%E5%90%89%E4%BB%96%E8%B0%B1/" class="title">别傻了吉他谱</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2022-01-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2022-01-02</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://helberg1984.github.io/2019/12/git%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%85%8D%E7%BD%AE/" class="title">Git学习和配置</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-12-31 00:00:00 &#43;0000 UTC" itemprop="datePublished">2019-12-31</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2014/04/goisforlovers/"
+    >(Hu)go Template Primer</a
+  >
+</h1>
+
+      <div class="article-meta">
+        
+<span class="article-date">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+<a href="https://helberg1984.github.io/2014/04/goisforlovers/" class="article-date">
+  <time datetime="2014-04-02 00:00:00 &#43;0000 UTC" itemprop="datePublished">2014-04-02</time>
+</a>
+</span>
+<span class="article-category">
+  <i class="icon icon-folder"></i>&nbsp;
+  <a class="article-category-link" href="/categories/development/"> Development </a>
+  <a class="article-category-link" href="/categories/golang/"> golang </a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>&nbsp;
+    <a class="article-tag-link" href="/tags/go/"> go </a>
+    <a class="article-tag-link" href="/tags/golang/"> golang </a>
+    <a class="article-tag-link" href="/tags/templates/"> templates </a>
+    <a class="article-tag-link" href="/tags/themes/"> themes </a>
+    <a class="article-tag-link" href="/tags/development/"> development </a>
+  </span>
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="https://helberg1984.github.io/2014/04/goisforlovers/" class="leancloud_visitors"  data-flag-title="(Hu)go Template Primer">0</span>
+    </span>
+        <span class="post-comment"><i class="icon icon-comment"></i>&nbsp;<a href="/2014/04/goisforlovers/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1488 words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Time: 7 minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>Hugo uses the excellent <a href="http://golang.org/">go</a> <a href="http://golang.org/pkg/html/template/">html/template</a> library for
 its template engine. It is an extremely lightweight engine that provides a very
 small amount of logic. In our experience that it is just the right amount of
 logic to be able to create a good static website. If you have used other
 template systems from different languages or frameworks you will find a lot of
-similarities in go templates.</p><p>This document is a brief primer on using go templates. The <a href=http://golang.org/pkg/html/template/>go docs</a>
-provide more details.</p><h2 id=introduction-to-go-templates>Introduction to Go Templates</h2><p>Go templates provide an extremely simple template language. It adheres to the
+similarities in go templates.</p>
+<p>This document is a brief primer on using go templates. The <a href="http://golang.org/pkg/html/template/">go docs</a>
+provide more details.</p>
+<h2 id="introduction-to-go-templates">Introduction to Go Templates</h2>
+<p>Go templates provide an extremely simple template language. It adheres to the
 belief that only the most basic of logic belongs in the template or view layer.
-One consequence of this simplicity is that go templates parse very quickly.</p><p>A unique characteristic of go templates is they are content aware. Variables and
+One consequence of this simplicity is that go templates parse very quickly.</p>
+<p>A unique characteristic of go templates is they are content aware. Variables and
 content will be sanitized depending on the context of where they are used. More
-details can be found in the <a href=http://golang.org/pkg/html/template/>go docs</a>.</p><h2 id=basic-syntax>Basic Syntax</h2><p>Go lang templates are html files with the addition of variables and
-functions.</p><p><strong>Go variables and functions are accessible within {{ }}</strong></p><p>Accessing a predefined variable &ldquo;foo&rdquo;:</p><pre><code>{{ foo }}
-</code></pre><p><strong>Parameters are separated using spaces</strong></p><p>Calling the add function with input of 1, 2:</p><pre><code>{{ add 1 2 }}
-</code></pre><p><strong>Methods and fields are accessed via dot notation</strong></p><p>Accessing the Page Parameter &ldquo;bar&rdquo;</p><pre><code>{{ .Params.bar }}
-</code></pre><p><strong>Parentheses can be used to group items together</strong></p><pre><code>{{ if or (isset .Params &quot;alt&quot;) (isset .Params &quot;caption&quot;) }} Caption {{ end }}
-</code></pre><h2 id=variables>Variables</h2><p>Each go template has a struct (object) made available to it. In hugo each
+details can be found in the <a href="http://golang.org/pkg/html/template/">go docs</a>.</p>
+<h2 id="basic-syntax">Basic Syntax</h2>
+<p>Go lang templates are html files with the addition of variables and
+functions.</p>
+<p><strong>Go variables and functions are accessible within {{ }}</strong></p>
+<p>Accessing a predefined variable &ldquo;foo&rdquo;:</p>
+<pre><code>{{ foo }}
+</code></pre>
+<p><strong>Parameters are separated using spaces</strong></p>
+<p>Calling the add function with input of 1, 2:</p>
+<pre><code>{{ add 1 2 }}
+</code></pre>
+<p><strong>Methods and fields are accessed via dot notation</strong></p>
+<p>Accessing the Page Parameter &ldquo;bar&rdquo;</p>
+<pre><code>{{ .Params.bar }}
+</code></pre>
+<p><strong>Parentheses can be used to group items together</strong></p>
+<pre><code>{{ if or (isset .Params &quot;alt&quot;) (isset .Params &quot;caption&quot;) }} Caption {{ end }}
+</code></pre>
+<h2 id="variables">Variables</h2>
+<p>Each go template has a struct (object) made available to it. In hugo each
 template is passed either a page or a node struct depending on which type of
 page you are rendering. More details are available on the
-<a href=/layout/variables>variables</a> page.</p><p>A variable is accessed by referencing the variable name.</p><pre><code>&lt;title&gt;{{ .Title }}&lt;/title&gt;
-</code></pre><p>Variables can also be defined and referenced.</p><pre><code>{{ $address := &quot;123 Main St.&quot;}}
+<a href="/layout/variables">variables</a> page.</p>
+<p>A variable is accessed by referencing the variable name.</p>
+<pre><code>&lt;title&gt;{{ .Title }}&lt;/title&gt;
+</code></pre>
+<p>Variables can also be defined and referenced.</p>
+<pre><code>{{ $address := &quot;123 Main St.&quot;}}
 {{ $address }}
-</code></pre><h2 id=functions>Functions</h2><p>Go template ship with a few functions which provide basic functionality. The go
+</code></pre>
+<h2 id="functions">Functions</h2>
+<p>Go template ship with a few functions which provide basic functionality. The go
 template system also provides a mechanism for applications to extend the
-available functions with their own. <a href=/layout/functions>Hugo template
+available functions with their own. <a href="/layout/functions">Hugo template
 functions</a> provide some additional functionality we believe
 are useful for building websites. Functions are called by using their name
 followed by the required parameters separated by spaces. Template
-functions cannot be added without recompiling hugo.</p><p><strong>Example:</strong></p><pre><code>{{ add 1 2 }}
-</code></pre><h2 id=includes>Includes</h2><p>When including another template you will pass to it the data it will be
+functions cannot be added without recompiling hugo.</p>
+<p><strong>Example:</strong></p>
+<pre><code>{{ add 1 2 }}
+</code></pre>
+<h2 id="includes">Includes</h2>
+<p>When including another template you will pass to it the data it will be
 able to access. To pass along the current context please remember to
 include a trailing dot. The templates location will always be starting at
-the /layout/ directory within Hugo.</p><p><strong>Example:</strong></p><pre><code>{{ template &quot;chrome/header.html&quot; . }}
-</code></pre><h2 id=logic>Logic</h2><p>Go templates provide the most basic iteration and conditional logic.</p><h3 id=iteration>Iteration</h3><p>Just like in go, the go templates make heavy use of range to iterate over
+the /layout/ directory within Hugo.</p>
+<p><strong>Example:</strong></p>
+<pre><code>{{ template &quot;chrome/header.html&quot; . }}
+</code></pre>
+<h2 id="logic">Logic</h2>
+<p>Go templates provide the most basic iteration and conditional logic.</p>
+<h3 id="iteration">Iteration</h3>
+<p>Just like in go, the go templates make heavy use of range to iterate over
 a map, array or slice. The following are different examples of how to use
-range.</p><p><strong>Example 1: Using Context</strong></p><pre><code>{{ range array }} 
+range.</p>
+<p><strong>Example 1: Using Context</strong></p>
+<pre><code>{{ range array }} 
     {{ . }}
 {{ end }}
-</code></pre><p><strong>Example 2: Declaring value variable name</strong></p><pre><code>{{range $element := array}} 
+</code></pre>
+<p><strong>Example 2: Declaring value variable name</strong></p>
+<pre><code>{{range $element := array}} 
     {{ $element }} 
 {{ end }}
-</code></pre><p><strong>Example 2: Declaring key and value variable name</strong></p><pre><code>{{range $index, $element := array}}
+</code></pre>
+<p><strong>Example 2: Declaring key and value variable name</strong></p>
+<pre><code>{{range $index, $element := array}}
     {{ $index }} 
     {{ $element }} 
 {{ end }}
-</code></pre><h3 id=conditionals>Conditionals</h3><p>If, else, with, or, & and provide the framework for handling conditional
-logic in Go Templates. Like range, each statement is closed with <code>end</code>.</p><p>Go Templates treat the following values as false:</p><ul><li>false</li><li>0</li><li>any array, slice, map, or string of length zero</li></ul><p><strong>Example 1: If</strong></p><pre><code>{{ if isset .Params &quot;title&quot; }}&lt;h4&gt;{{ index .Params &quot;title&quot; }}&lt;/h4&gt;{{ end }}
-</code></pre><p><strong>Example 2: If -> Else</strong></p><pre><code>{{ if isset .Params &quot;alt&quot; }} 
+</code></pre>
+<h3 id="conditionals">Conditionals</h3>
+<p>If, else, with, or, &amp; and provide the framework for handling conditional
+logic in Go Templates. Like range, each statement is closed with <code>end</code>.</p>
+<p>Go Templates treat the following values as false:</p>
+<ul>
+<li>false</li>
+<li>0</li>
+<li>any array, slice, map, or string of length zero</li>
+</ul>
+<p><strong>Example 1: If</strong></p>
+<pre><code>{{ if isset .Params &quot;title&quot; }}&lt;h4&gt;{{ index .Params &quot;title&quot; }}&lt;/h4&gt;{{ end }}
+</code></pre>
+<p><strong>Example 2: If -&gt; Else</strong></p>
+<pre><code>{{ if isset .Params &quot;alt&quot; }} 
     {{ index .Params &quot;alt&quot; }}
 {{else}}
     {{ index .Params &quot;caption&quot; }}
 {{ end }}
-</code></pre><p><strong>Example 3: And & Or</strong></p><pre><code>{{ if and (or (isset .Params &quot;title&quot;) (isset .Params &quot;caption&quot;)) (isset .Params &quot;attr&quot;)}}
-</code></pre><p><strong>Example 4: With</strong></p><p>An alternative way of writing &ldquo;if&rdquo; and then referencing the same value
+</code></pre>
+<p><strong>Example 3: And &amp; Or</strong></p>
+<pre><code>{{ if and (or (isset .Params &quot;title&quot;) (isset .Params &quot;caption&quot;)) (isset .Params &quot;attr&quot;)}}
+</code></pre>
+<p><strong>Example 4: With</strong></p>
+<p>An alternative way of writing &ldquo;if&rdquo; and then referencing the same value
 is to use &ldquo;with&rdquo; instead. With rebinds the context <code>.</code> within its scope,
-and skips the block if the variable is absent.</p><p>The first example above could be simplified as:</p><pre><code>{{ with .Params.title }}&lt;h4&gt;{{ . }}&lt;/h4&gt;{{ end }}
-</code></pre><p><strong>Example 5: If -> Else If</strong></p><pre><code>{{ if isset .Params &quot;alt&quot; }} 
+and skips the block if the variable is absent.</p>
+<p>The first example above could be simplified as:</p>
+<pre><code>{{ with .Params.title }}&lt;h4&gt;{{ . }}&lt;/h4&gt;{{ end }}
+</code></pre>
+<p><strong>Example 5: If -&gt; Else If</strong></p>
+<pre><code>{{ if isset .Params &quot;alt&quot; }} 
     {{ index .Params &quot;alt&quot; }}
 {{ else if isset .Params &quot;caption&quot; }}
     {{ index .Params &quot;caption&quot; }}
 {{ end }}
-</code></pre><h2 id=pipes>Pipes</h2><p>One of the most powerful components of go templates is the ability to
+</code></pre>
+<h2 id="pipes">Pipes</h2>
+<p>One of the most powerful components of go templates is the ability to
 stack actions one after another. This is done by using pipes. Borrowed
 from unix pipes, the concept is simple, each pipeline&rsquo;s output becomes the
-input of the following pipe.</p><p>Because of the very simple syntax of go templates, the pipe is essential
+input of the following pipe.</p>
+<p>Because of the very simple syntax of go templates, the pipe is essential
 to being able to chain together function calls. One limitation of the
 pipes is that they only can work with a single value and that value
-becomes the last parameter of the next pipeline.</p><p>A few simple examples should help convey how to use the pipe.</p><p><strong>Example 1 :</strong></p><pre><code>{{ if eq 1 1 }} Same {{ end }}
-</code></pre><p>is the same as</p><pre><code>{{ eq 1 1 | if }} Same {{ end }}
-</code></pre><p>It does look odd to place the if at the end, but it does provide a good
-illustration of how to use the pipes.</p><p><strong>Example 2 :</strong></p><pre><code>{{ index .Params &quot;disqus_url&quot; | html }}
-</code></pre><p>Access the page parameter called &ldquo;disqus_url&rdquo; and escape the HTML.</p><p><strong>Example 3 :</strong></p><pre><code>{{ if or (or (isset .Params &quot;title&quot;) (isset .Params &quot;caption&quot;)) (isset .Params &quot;attr&quot;)}}
+becomes the last parameter of the next pipeline.</p>
+<p>A few simple examples should help convey how to use the pipe.</p>
+<p><strong>Example 1 :</strong></p>
+<pre><code>{{ if eq 1 1 }} Same {{ end }}
+</code></pre>
+<p>is the same as</p>
+<pre><code>{{ eq 1 1 | if }} Same {{ end }}
+</code></pre>
+<p>It does look odd to place the if at the end, but it does provide a good
+illustration of how to use the pipes.</p>
+<p><strong>Example 2 :</strong></p>
+<pre><code>{{ index .Params &quot;disqus_url&quot; | html }}
+</code></pre>
+<p>Access the page parameter called &ldquo;disqus_url&rdquo; and escape the HTML.</p>
+<p><strong>Example 3 :</strong></p>
+<pre><code>{{ if or (or (isset .Params &quot;title&quot;) (isset .Params &quot;caption&quot;)) (isset .Params &quot;attr&quot;)}}
 Stuff Here
 {{ end }}
-</code></pre><p>Could be rewritten as</p><pre><code>{{  isset .Params &quot;caption&quot; | or isset .Params &quot;title&quot; | or isset .Params &quot;attr&quot; | if }}
+</code></pre>
+<p>Could be rewritten as</p>
+<pre><code>{{  isset .Params &quot;caption&quot; | or isset .Params &quot;title&quot; | or isset .Params &quot;attr&quot; | if }}
 Stuff Here 
 {{ end }}
-</code></pre><h2 id=context-aka-the-dot>Context (aka. the dot)</h2><p>The most easily overlooked concept to understand about go templates is that {{ . }}
+</code></pre>
+<h2 id="context-aka-the-dot">Context (aka. the dot)</h2>
+<p>The most easily overlooked concept to understand about go templates is that {{ . }}
 always refers to the current context. In the top level of your template this
 will be the data set made available to it. Inside of a iteration it will have
 the value of the current item. When inside of a loop the context has changed. .
 will no longer refer to the data available to the entire page. If you need to
 access this from within the loop you will likely want to set it to a variable
-instead of depending on the context.</p><p><strong>Example:</strong></p><pre><code>  {{ $title := .Site.Title }}
+instead of depending on the context.</p>
+<p><strong>Example:</strong></p>
+<pre><code>  {{ $title := .Site.Title }}
   {{ range .Params.tags }}
     &lt;li&gt; &lt;a href=&quot;{{ $baseurl }}/tags/{{ . | urlize }}&quot;&gt;{{ . }}&lt;/a&gt; - {{ $title }} &lt;/li&gt;
   {{ end }}
-</code></pre><p>Notice how once we have entered the loop the value of {{ . }} has changed. We
+</code></pre>
+<p>Notice how once we have entered the loop the value of {{ . }} has changed. We
 have defined a variable outside of the loop so we have access to it from within
-the loop.</p><h1 id=hugo-parameters>Hugo Parameters</h1><p>Hugo provides the option of passing values to the template language
+the loop.</p>
+<h1 id="hugo-parameters">Hugo Parameters</h1>
+<p>Hugo provides the option of passing values to the template language
 through the site configuration (for sitewide values), or through the meta
 data of each specific piece of content. You can define any values of any
 type (supported by your front matter/config format) and use them however
-you want to inside of your templates.</p><h2 id=using-content-page-parameters>Using Content (page) Parameters</h2><p>In each piece of content you can provide variables to be used by the
-templates. This happens in the <a href=/content/front-matter>front matter</a>.</p><p>An example of this is used in this documentation site. Most of the pages
+you want to inside of your templates.</p>
+<h2 id="using-content-page-parameters">Using Content (page) Parameters</h2>
+<p>In each piece of content you can provide variables to be used by the
+templates. This happens in the <a href="/content/front-matter">front matter</a>.</p>
+<p>An example of this is used in this documentation site. Most of the pages
 benefit from having the table of contents provided. Sometimes the TOC just
 doesn&rsquo;t make a lot of sense. We&rsquo;ve defined a variable in our front matter
-of some pages to turn off the TOC from being displayed.</p><p>Here is the example front matter:</p><pre><code>---
+of some pages to turn off the TOC from being displayed.</p>
+<p>Here is the example front matter:</p>
+<pre><code>---
 title: &quot;Permalinks&quot;
 date: &quot;2013-11-18&quot;
 aliases:
@@ -138,47 +620,215 @@ groups: [&quot;extras&quot;]
 groups_weight: 30
 notoc: true
 ---
-</code></pre><p>Here is the corresponding code inside of the template:</p><pre><code>  {{ if not .Params.notoc }}
+</code></pre>
+<p>Here is the corresponding code inside of the template:</p>
+<pre><code>  {{ if not .Params.notoc }}
     &lt;div id=&quot;toc&quot; class=&quot;well col-md-4 col-sm-6&quot;&gt;
     {{ .TableOfContents }}
     &lt;/div&gt;
   {{ end }}
-</code></pre><h2 id=using-site-config-parameters>Using Site (config) Parameters</h2><p>In your top-level configuration file (eg, <code>config.yaml</code>) you can define site
-parameters, which are values which will be available to you in chrome.</p><p>For instance, you might declare:</p><pre><code class=language-yaml>params:
+</code></pre>
+<h2 id="using-site-config-parameters">Using Site (config) Parameters</h2>
+<p>In your top-level configuration file (eg, <code>config.yaml</code>) you can define site
+parameters, which are values which will be available to you in chrome.</p>
+<p>For instance, you might declare:</p>
+<pre><code class="language-yaml">params:
   CopyrightHTML: &quot;Copyright &amp;#xA9; 2013 John Doe. All Rights Reserved.&quot;
   TwitterUser: &quot;spf13&quot;
   SidebarRecentLimit: 5
-</code></pre><p>Within a footer layout, you might then declare a <code>&lt;footer></code> which is only
+</code></pre>
+<p>Within a footer layout, you might then declare a <code>&lt;footer&gt;</code> which is only
 provided if the <code>CopyrightHTML</code> parameter is provided, and if it is given,
 you would declare it to be HTML-safe, so that the HTML entity is not escaped
-again. This would let you easily update just your top-level config file each
-January 1st, instead of hunting through your templates.</p><pre><code>{{if .Site.Params.CopyrightHTML}}&lt;footer&gt;
+again.  This would let you easily update just your top-level config file each
+January 1st, instead of hunting through your templates.</p>
+<pre><code>{{if .Site.Params.CopyrightHTML}}&lt;footer&gt;
 &lt;div class=&quot;text-center&quot;&gt;{{.Site.Params.CopyrightHTML | safeHtml}}&lt;/div&gt;
 &lt;/footer&gt;{{end}}
-</code></pre><p>An alternative way of writing the &ldquo;if&rdquo; and then referencing the same value
+</code></pre>
+<p>An alternative way of writing the &ldquo;if&rdquo; and then referencing the same value
 is to use &ldquo;with&rdquo; instead. With rebinds the context <code>.</code> within its scope,
-and skips the block if the variable is absent:</p><pre><code>{{with .Site.Params.TwitterUser}}&lt;span class=&quot;twitter&quot;&gt;
+and skips the block if the variable is absent:</p>
+<pre><code>{{with .Site.Params.TwitterUser}}&lt;span class=&quot;twitter&quot;&gt;
 &lt;a href=&quot;https://twitter.com/{{.}}&quot; rel=&quot;author&quot;&gt;
 &lt;img src=&quot;/images/twitter.png&quot; width=&quot;48&quot; height=&quot;48&quot; title=&quot;Twitter: {{.}}&quot;
  alt=&quot;Twitter&quot;&gt;&lt;/a&gt;
 &lt;/span&gt;{{end}}
-</code></pre><p>Finally, if you want to pull &ldquo;magic constants&rdquo; out of your layouts, you can do
-so, such as in this example:</p><pre><code>&lt;nav class=&quot;recent&quot;&gt;
+</code></pre>
+<p>Finally, if you want to pull &ldquo;magic constants&rdquo; out of your layouts, you can do
+so, such as in this example:</p>
+<pre><code>&lt;nav class=&quot;recent&quot;&gt;
   &lt;h1&gt;Recent Posts&lt;/h1&gt;
   &lt;ul&gt;{{range first .Site.Params.SidebarRecentLimit .Site.Recent}}
     &lt;li&gt;&lt;a href=&quot;{{.RelPermalink}}&quot;&gt;{{.Title}}&lt;/a&gt;&lt;/li&gt;
   {{end}}&lt;/ul&gt;
 &lt;/nav&gt;
-</code></pre></div><div class=article-footer><blockquote class=mt-2x><ul class="post-copyright list-unstyled"><li class="post-copyright-link hidden-xs"><strong>Permalink:</strong>
-<a href=https://helberg1984.github.io/2014/04/goisforlovers/ title="(Hu)go Template Primer" target=_blank rel=external>https://helberg1984.github.io/2014/04/goisforlovers/</a></li><li class=post-copyright-license><strong>License:</strong>
-<a href=http://creativecommons.org/licenses/by/4.0/deed.zh target=_blank rel=external>爱与和平</a></li></ul></blockquote><div class="panel panel-default panel-badger"><div class=panel-body><figure class=media><div class=media-left><a href=https://helberg1984.github.io/ target=_blank class="img-burn thumb-sm visible-lg"><img src=https://helberg1984.github.io/avatar.png class="img-rounded w-full" alt></a></div><div class=media-body><h3 class=media-heading><a href=https://helberg1984.github.io/ target=_blank><span class=text-dark>Maxwell</span><small class=ml-1x>时空光影，不负流年</small></a></h3><div>快乐如影随形，有你就好。</div></div></figure></div></div></div></article><section id=comments><div id=vcomments></div></section></div><nav class="bar bar-footer clearfix" data-stick-bottom><div class=bar-inner><ul class="pager pull-left"><li class=prev><a href=https://helberg1984.github.io/1/01/%E9%98%BF%E6%96%AF%E9%A1%BF/><i class="icon icon-angle-left" aria-hidden=true></i><span>&nbsp;&nbsp;Older</span></a></li><li class=next><a href=https://helberg1984.github.io/about/ title=About><span>Newer&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden=true></i></a></li><li class=toggle-toc><a class="toggle-btn collapsed" data-toggle=collapse href=#collapseToc aria-expanded=false title=Catalogue role=button><span>[&nbsp;</span><span>Catalogue</span>
-<i class="text-collapsed icon icon-anchor"></i><i class="text-in icon icon-close"></i><span>]</span></a></li></ul><div class=bar-right><div class=share-component data-sites=weibo,qq,wechat,facebook,twitter data-mobile-sites=weibo,qq,qzone></div></div></div></nav></main><footer class=footer itemscope itemtype=http://schema.org/WPFooter><ul class=social-links><li><a href=https://helberg1984.github.io/index.xml target=_blank title=rss data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li></ul><div class=copyright>&copy;2020 -
-2022<div class=publishby>Theme by <a href=https://github.com/helberg1984 target=_blank>Maxwell </a>base on<a href=https://github.com/xiaoheiAh/hugo-theme-pure target=_blank> pure</a>.</div></div></footer><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/x-mathjax-config>
+</code></pre>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>Permalink: </strong>
+      <a href="https://helberg1984.github.io/2014/04/goisforlovers/" title="(Hu)go Template Primer" target="_blank" rel="external">https://helberg1984.github.io/2014/04/goisforlovers/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License: </strong>
+        <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">爱与和平</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://helberg1984.github.io/" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://helberg1984.github.io/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://helberg1984.github.io/" target="_blank"><span class="text-dark">Maxwell</span><small class="ml-1x">时空光影，不负流年</small></a></h3>
+        <div>快乐如影随形，有你就好。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+<section id="comments">
+    <div id="vcomments"></div>
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://helberg1984.github.io/1/01/%E9%98%BF%E6%96%AF%E9%A1%BF/" title=""><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://helberg1984.github.io/about/"
+                    title="About"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
+        </div>
+    </div>
+</nav>
+
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://helberg1984.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2020  -
+    2022
+    <div class="publishby">
+        Theme by <a href="https://github.com/helberg1984" target="_blank"> Maxwell </a>base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
+    </div>
+    
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
             showMathMenu: false, //disables context menu
             tex2jax: {
             inlineMath: [ ['$','$'], ['\\(','\\)'] ]
            }
     });
-</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script><script>window.jQuery||document.write('<script src="js/jquery.min.js"><\/script>')</script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js defer></script><script type=text/javascript src=https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js defer></script><script>hljs.configure({tabReplace:'    ',classPrefix:''})
-hljs.initHighlightingOnLoad();</script><script src=https://helberg1984.github.io/js/application.min.bdeb64b910570b6c41badc6a05b7afb0c8ad9efd8525de3c7257d59e786326a3.js></script><script src=https://helberg1984.github.io/js/plugin.min.51ff8c7317566f82259170fa36e09c4493adc9b9378b427a01ad3f017ebac7dd.js></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:'Posts',PAGES:'Pages',CATEGORIES:'Categories',TAGS:'Tags',UNTITLED:'(Untitled)',},ROOT_URL:'https:\/\/helberg1984.github.io\/',CONTENT_URL:'https:\/\/helberg1984.github.io\/\/searchindex.json ',};window.INSIGHT_CONFIG=INSIGHT_CONFIG;})(window);</script><script type=text/javascript src=https://helberg1984.github.io/js/insight.min.a343cd9a5a7698336b28ef3a7c16a3a1b1d2d5fb17dc8ed04022bbe08cc5459073a15bdafa3a8a58cdd56080784bdd69fa70b1ae8597565c799c57ed00f0e120.js defer></script><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script><script>tocbot.init({tocSelector:'.js-toc',contentSelector:'.js-toc-content',headingSelector:'h1, h2, h3',hasInnerContainers:true,});</script><script src=//code.bdstatic.com/npm/leancloud-storage@4.12.0/dist/av-min.js></script><script src=https://cdn.jsdelivr.net/npm/valine></script><script type=text/javascript>var GUEST=['nick','mail','link'];var meta='nick,mail';meta=meta.split(',').filter(function(item){return GUEST.indexOf(item)>-1;});new Valine({el:'#vcomments',verify:false,notify:false,appId:'AAKKBXtVUrSVMDEJvisWnnaE-MdYXbMMI',appKey:'O5UWsMA0OAcEQYjglCwB316z',placeholder:'你想说点什么？',avatar:'mm',meta:meta,pageSize:'10'||10,visitor:true,serverURLs:'https:\/\/aakkbxtv.api.lncldglobal.com'});</script></body></html>
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/python.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/javascript.min.js" defer></script><script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script src="https://helberg1984.github.io/js/application.min.a94ab19cb63a95c8d7fbd7b85cab3ddeea8c369bdf75b9cab6708787ead123af.js"></script>
+<script src="https://helberg1984.github.io/js/plugin.min.19c5bcb2fb0789ab4f2b7834e5ceb5e92635645605bab902c1024b25f1502364.js"></script>
+
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/helberg1984.github.io\/',
+            CONTENT_URL: 'https:\/\/helberg1984.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://helberg1984.github.io/js/insight.min.4a2d52de4bfff73e0c688404fe3d17c9a3ae12d9888e1e1ac9c690e4890de2ded50fe55f2b819c2ba55435a76f396f3ea6805765f0b0af5635cdf74ea459eab0.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+<script src="//code.bdstatic.com/npm/leancloud-storage@4.12.0/dist/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine"></script>
+<script type="text/javascript">
+    var GUEST = ['nick', 'mail', 'link'];
+    var meta = 'nick,mail';
+    meta = meta.split(',').filter(function (item) {
+        return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+        el: '#vcomments',
+        verify: false ,
+        notify: false ,
+        appId: 'AAKKBXtVUrSVMDEJvisWnnaE-MdYXbMMI',
+        appKey: 'O5UWsMA0OAcEQYjglCwB316z',
+        placeholder: '你想说点什么？',
+        avatar: 'mm',
+        meta: meta,
+        pageSize: '10' || 10,
+        visitor: true ,
+        serverURLs: 'https:\/\/aakkbxtv.api.lncldglobal.com'
+});
+</script>
+  </body>
+</html>
